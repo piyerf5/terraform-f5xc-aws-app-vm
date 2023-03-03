@@ -93,10 +93,10 @@ resource "volterra_origin_pool" "aws" {
       }
       inside_network = true
     }
+  }
 
-    labels = {
-      Owner = var.resourceOwner
-    }
+  labels = {
+    Owner = var.resourceOwner
   }
 }
 
