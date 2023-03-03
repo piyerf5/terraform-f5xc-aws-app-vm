@@ -45,12 +45,15 @@ No modules.
 | <a name="input_f5demo_color"></a> [f5demo\_color](#input\_f5demo\_color) | F5 demo app color | `string` | n/a | yes |
 | <a name="input_f5demo_nodename"></a> [f5demo\_nodename](#input\_f5demo\_nodename) | F5 demo app node name | `string` | n/a | yes |
 | <a name="input_instanceSuffix"></a> [instanceSuffix](#input\_instanceSuffix) | n/a | `string` | n/a | yes |
+| <a name="input_namespace"></a> [namespace](#input\_namespace) | Volterra application namespace | `string` | n/a | yes |
 | <a name="input_projectPrefix"></a> [projectPrefix](#input\_projectPrefix) | projectPrefix name for tagging | `string` | n/a | yes |
 | <a name="input_resourceOwner"></a> [resourceOwner](#input\_resourceOwner) | Owner of the deployment for tagging purposes | `string` | n/a | yes |
+| <a name="input_site_name"></a> [site\_name](#input\_site\_name) | The XC site name | `string` | n/a | yes |
 | <a name="input_spokeSecurityGroup"></a> [spokeSecurityGroup](#input\_spokeSecurityGroup) | Security group for the spoke VPC | `string` | `null` | no |
 | <a name="input_spokeWorkloadSubnets"></a> [spokeWorkloadSubnets](#input\_spokeWorkloadSubnets) | n/a | `map` | n/a | yes |
 | <a name="input_ssh_key"></a> [ssh\_key](#input\_ssh\_key) | SSH public key used to create an EC2 keypair | `string` | `null` | no |
 | <a name="input_trusted_ip"></a> [trusted\_ip](#input\_trusted\_ip) | IP to allow external access | `string` | n/a | yes |
+| <a name="input_volterraTenant"></a> [volterraTenant](#input\_volterraTenant) | Tenant of Volterra | `string` | n/a | yes |
 
 ## Outputs
 
