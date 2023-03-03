@@ -17,6 +17,18 @@ variable "domain_name" {
   type        = string
   description = "The DNS domain name that will be used as common parent generated DNS name of loadbalancers"
 }
+variable site_name {
+  type        = string
+  description = "The XC site name"
+}
+variable "volterraTenant" {
+  description = "Tenant of Volterra"
+  type        = string
+}
+variable "namespace" {
+  description = "Volterra application namespace"
+  type        = string
+}
 variable "awsRegion" {
   description = "aws region"
   type        = string

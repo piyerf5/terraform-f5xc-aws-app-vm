@@ -94,9 +94,9 @@ resource "volterra_origin_pool" "aws" {
       inside_network = true
     }
 
-    labels = merge(local.volterraCommonLabels, {
+    labels = {
       Owner = var.resourceOwner
-    })
+    }
   }
 }
 
@@ -110,7 +110,7 @@ resource "volterra_http_loadbalancer" "aws" {
   service_policies_from_namespace = true
   disable_waf                     = true
 
-  advertise_on_public_default_vip {}
+  advertise_on_public_default_vip = true
 
   default_route_pools {
     pool {
@@ -120,5 +120,9 @@ resource "volterra_http_loadbalancer" "aws" {
 
   http {
     dns_volterra_managed = true
+  }
+
+  labels = {
+    Owner = var.resourceOwner
   }
 }
