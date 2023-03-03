@@ -13,6 +13,10 @@ variable "trusted_ip" {
   type        = string
   description = "IP to allow external access"
 }
+variable "domain_name" {
+  type        = string
+  description = "The DNS domain name that will be used as common parent generated DNS name of loadbalancers"
+}
 variable "awsRegion" {
   description = "aws region"
   type        = string
@@ -45,10 +49,10 @@ variable "awsAz3" {
 variable "spokeWorkloadSubnets" {
   type = map
 }
-variable "webapp_ami_search_name" {
+variable "ami_search_name" {
   type        = string
   default     = "ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-20230112"
-  description = "AWS AMI search filter to find correct web app (Ubuntu) for region"
+  description = "AWS AMI search filter to find correct image (Ubuntu) for region"
 }
 variable "f5demo_app" {
   description = "F5 demo app function (ex. website, frontend, backend, text)"
