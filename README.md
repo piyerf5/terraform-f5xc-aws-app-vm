@@ -1,5 +1,5 @@
 # terraform-f5xc-aws-app-vm
-Terraform module to create a workload in AWS using a VM (EC2).
+Terraform module to create a workload in AWS using a VM (EC2) and published via the AWS VPC Site created by XC.
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
