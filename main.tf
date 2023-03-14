@@ -91,7 +91,7 @@ resource "volterra_origin_pool" "aws" {
           name      = var.site_name
         }
       }
-      inside_network = true
+      outside_network = true
     }
   }
 
