@@ -13,7 +13,7 @@ terraform {
 }
 
 provider "aws" {
-  region = var.awsRegion
+  region = var.aws_region
 }
 
 ########################### AWS Availibility Zones ##########################
@@ -24,9 +24,9 @@ data "aws_availability_zones" "available" {
 }
 
 locals {
-  awsAz1 = var.awsAz1 != null ? var.awsAz1 : data.aws_availability_zones.available.names[0]
-  awsAz2 = var.awsAz2 != null ? var.awsAz1 : data.aws_availability_zones.available.names[1]
-  awsAz3 = var.awsAz3 != null ? var.awsAz1 : data.aws_availability_zones.available.names[2]
+  awsAz1 = var.aws_az1 != null ? var.aws_az1 : data.aws_availability_zones.available.names[0]
+  awsAz2 = var.aws_az2 != null ? var.aws_az1 : data.aws_availability_zones.available.names[1]
+  awsAz3 = var.aws_az3 != null ? var.aws_az1 : data.aws_availability_zones.available.names[2]
 }
 
 ############################ AMI ############################
@@ -60,21 +60,21 @@ locals {
 resource "aws_instance" "webserver" {
   ami                    = data.aws_ami.ubuntu.id
   instance_type          = "t3.large"
-  subnet_id              = var.spokeWorkloadSubnets["az1"].id
-  vpc_security_group_ids = [var.spokeSecurityGroup]
+  subnet_id              = var.spoke_workload_subnets["az1"].id
+  vpc_security_group_ids = [var.spoke_security_group]
   key_name               = var.ssh_key
   user_data              = local.user_data
 
   tags = {
-    Name  = format("%s-webserver-%s", var.projectPrefix, var.instanceSuffix)
-    Owner = var.resourceOwner
+    Name  = format("%s-webserver-%s", var.project_prefix, var.instance_suffix)
+    Owner = var.resource_owner
   }
 }
 
 ############################ XC HTTP LB and Origin Pool ############################
 
 resource "volterra_origin_pool" "aws" {
-  name                   = format("%s-aws-%s", var.projectPrefix, var.instanceSuffix)
+  name                   = format("%s-aws-%s", var.project_prefix, var.instance_suffix)
   namespace              = var.namespace
   endpoint_selection     = "DISTRIBUTED"
   loadbalancer_algorithm = "LB_OVERRIDE"
@@ -86,7 +86,7 @@ resource "volterra_origin_pool" "aws" {
       ip = aws_instance.webserver.private_ip
       site_locator {
         site {
-          tenant    = var.volterraTenant
+          tenant    = var.volterra_tenant
           namespace = "system"
           name      = var.site_name
         }
@@ -96,12 +96,12 @@ resource "volterra_origin_pool" "aws" {
   }
 
   labels = {
-    Owner = var.resourceOwner
+    Owner = var.resource_owner
   }
 }
 
 resource "volterra_http_loadbalancer" "aws" {
-  name                            = format("%s-aws-%s", var.projectPrefix, var.instanceSuffix)
+  name                            = format("%s-aws-%s", var.project_prefix, var.instance_suffix)
   namespace                       = var.namespace
   no_challenge                    = true
   domains                         = [var.domain_name]
@@ -123,6 +123,6 @@ resource "volterra_http_loadbalancer" "aws" {
   }
 
   labels = {
-    Owner = var.resourceOwner
+    Owner = var.resource_owner
   }
 }

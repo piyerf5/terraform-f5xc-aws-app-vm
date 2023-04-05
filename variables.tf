@@ -1,17 +1,13 @@
-variable "instanceSuffix" {
+variable "instance_suffix" {
   type = string
 }
-variable "projectPrefix" {
+variable "project_prefix" {
   type        = string
   description = "projectPrefix name for tagging"
 }
-variable "resourceOwner" {
+variable "resource_owner" {
   type        = string
   description = "Owner of the deployment for tagging purposes"
-}
-variable "trusted_ip" {
-  type        = string
-  description = "IP to allow external access"
 }
 variable "domain_name" {
   type        = string
@@ -21,7 +17,7 @@ variable site_name {
   type        = string
   description = "The XC site name"
 }
-variable "volterraTenant" {
+variable "volterra_tenant" {
   description = "Tenant of Volterra"
   type        = string
 }
@@ -29,7 +25,7 @@ variable "namespace" {
   description = "Volterra application namespace"
   type        = string
 }
-variable "awsRegion" {
+variable "aws_region" {
   description = "aws region"
   type        = string
 }
@@ -38,27 +34,27 @@ variable "ssh_key" {
   type        = string
   default     = null
 }
-variable "spokeSecurityGroup" {
+variable "spoke_security_group" {
   description = "Security group for the spoke VPC"
   type        = string
   default     = null
 }
-variable "awsAz1" {
+variable "aws_az1" {
   description = "Availability zone, will dynamically choose one if left empty"
   type        = string
   default     = null
 }
-variable "awsAz2" {
+variable "aws_az2" {
   description = "Availability zone, will dynamically choose one if left empty"
   type        = string
   default     = null
 }
-variable "awsAz3" {
+variable "aws_az3" {
   description = "Availability zone, will dynamically choose one if left empty"
   type        = string
   default     = null
 }
-variable "spokeWorkloadSubnets" {
+variable "spoke_workload_subnets" {
   type = map
 }
 variable "ami_search_name" {
